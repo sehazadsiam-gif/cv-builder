@@ -2,6 +2,7 @@
 
 import { CVData, CVType, CV_TYPES } from "@/lib/cvTypes";
 import { Plus, Trash2 } from "lucide-react";
+import { useState } from "react";
 
 interface CVFormProps {
   type: CVType;
@@ -95,6 +96,48 @@ export default function CVForm({ type, data, onChange, accentColor }: CVFormProp
 
   const showSummary = sections.includes("summary") || ["mnc", "tech", "creative", "chronological", "combination", "targeted", "professional", "executive", "career_change", "europass", "federal", "international", "mini", "technical", "non_traditional", "video", "graduate", "portfolio", "digital", "infographic"].includes(type);
 
+  const [isGeneratingSummary, setIsGeneratingSummary] = useState(false);
+
+  const handleGenerateSummary = async () => {
+    try {
+      setIsGeneratingSummary(true);
+      const name = data.personal.fullName || "[Name]";
+      const cvType = CV_TYPES[type].label;
+      const skills = data.skills[0]?.skills || "[Skills]";
+      
+      const prompt = `Write a 3-sentence professional CV summary for a ${cvType} CV. Name: ${name}. Skills: ${skills}. Be concise, ATS-friendly, and use active voice.`;
+
+      const response = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": process.env.NEXT_PUBLIC_ANTHROPIC_KEY || "",
+          "anthropic-version": "2023-06-01",
+          "anthropic-dangerously-allow-browser": "true",
+        },
+        body: JSON.stringify({
+          model: "claude-haiku-4-5-20251001",
+          max_tokens: 300,
+          messages: [{ role: "user", content: prompt }]
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to generate summary");
+      }
+
+      const result = await response.json();
+      if (result.content?.[0]?.text) {
+        update("personal.summary", result.content[0].text);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Failed to generate summary with AI.");
+    } finally {
+      setIsGeneratingSummary(false);
+    }
+  };
+
   return (
     <div className="p-5 space-y-1">
 
@@ -127,14 +170,27 @@ export default function CVForm({ type, data, onChange, accentColor }: CVFormProp
 
         {/* Summary */}
         {showSummary && (
-          inp(
-            type === "academic" ? "Research Profile" : type === "executive" ? "Executive Profile" : "Professional Summary",
-            "personal.summary",
-            type === "academic" ? "Briefly describe your research focus and academic goals..." :
-              type === "executive" ? "3–4 lines on your leadership philosophy, impact and strategic vision." :
-                "2–3 sentences: your role, top skills, and what you bring.",
-            true, 3
-          )
+          <div className="space-y-2">
+            {inp(
+              type === "academic" ? "Research Profile" : type === "executive" ? "Executive Profile" : "Professional Summary",
+              "personal.summary",
+              type === "academic" ? "Briefly describe your research focus and academic goals..." :
+                type === "executive" ? "3–4 lines on your leadership philosophy, impact and strategic vision." :
+                  "2–3 sentences: your role, top skills, and what you bring.",
+              true, 3
+            )}
+            <button
+              onClick={handleGenerateSummary}
+              disabled={isGeneratingSummary}
+              className="flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-xl border transition-colors disabled:opacity-50"
+              style={{ color: accentColor, borderColor: accentColor }}
+            >
+              {isGeneratingSummary ? (
+                <div className="w-3 h-3 border-2 border-t-transparent rounded-full animate-spin" style={{ borderColor: `${accentColor} transparent ${accentColor} ${accentColor}` }}></div>
+              ) : "✨"}
+              {isGeneratingSummary ? "Generating..." : "Generate with AI"}
+            </button>
+          </div>
         )}
       </div>
 
