@@ -359,7 +359,7 @@ function SkillsSection({ data, color }: { data: CVData; color: string }) {
   );
 }
 
-function EducationSection({ data, color, type }: { data: CVData; color: string; type: CVType }) {
+function EducationSection({ data, color }: { data: CVData; color: string }) {
   return (
     <Section title="Education" color={color}>
       {data.education.filter(e => e.institution).map((edu) => (

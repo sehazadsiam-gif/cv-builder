@@ -16,7 +16,7 @@ function BuilderContent() {
   const [showPreview, setShowPreview] = useState(false); // mobile toggle
   const previewRef = useRef<HTMLDivElement | null>(null);
 
-  const typeConfig = CV_TYPES[type] || CV_TYPES.mnc;
+  const typeConfig = CV_TYPES[type] || CV_TYPES.chronological;
 
   const handleDataChange = useCallback((data: CVData) => {
     setCvData(data);
