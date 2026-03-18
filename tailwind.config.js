@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       fontFamily: {
         display: ["'Playfair Display'", "Georgia", "serif"],
-        body: ["'DM Sans'", "sans-serif"],
+        body: ["'Hammersmith One'", "sans-serif"],
         mono: ["'DM Mono'", "monospace"],
         cv: ["'Libre Baskerville'", "Georgia", "serif"],
       },
