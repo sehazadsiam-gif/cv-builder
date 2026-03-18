@@ -74,7 +74,7 @@ export default function CVForm({ type, data, onChange, accentColor }: CVFormProp
   const removeItem = (section: keyof CVData, id: string) => {
     const newData = JSON.parse(JSON.stringify(data)) as CVData;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    newData[section] = (newData[section] as any[]).filter((i: { id: string }) => i.id !== id);
+    (newData as any)[section] = (newData[section] as any[]).filter((i: { id: string }) => i.id !== id);
     onChange(newData);
   };
 
@@ -131,8 +131,8 @@ export default function CVForm({ type, data, onChange, accentColor }: CVFormProp
             type === "academic" ? "Research Profile" : type === "executive" ? "Executive Profile" : "Professional Summary",
             "personal.summary",
             type === "academic" ? "Briefly describe your research focus and academic goals..." :
-            type === "executive" ? "3–4 lines on your leadership philosophy, impact and strategic vision." :
-            "2–3 sentences: your role, top skills, and what you bring.",
+              type === "executive" ? "3–4 lines on your leadership philosophy, impact and strategic vision." :
+                "2–3 sentences: your role, top skills, and what you bring.",
             true, 3
           )
         )}
