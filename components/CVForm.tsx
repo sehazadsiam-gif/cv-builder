@@ -101,7 +101,7 @@ export default function CVForm({ type, data, onChange, accentColor }: CVFormProp
       {/* ── PERSONAL ── */}
       <SectionTitle title="Personal Information" accentColor={accentColor} />
       <div className="space-y-3">
-        {inp("Full Name *", "personal.fullName", "e.g. Rahim Ahmed")}
+        {inp("Full Name *", "personal.fullName", "e.g. Sehazad Siam")}
         <div className="grid grid-cols-2 gap-3">
           {inp("Email *", "personal.email", "you@email.com")}
           {inp("Phone", "personal.phone", "+880 1XXX XXXXXX")}
