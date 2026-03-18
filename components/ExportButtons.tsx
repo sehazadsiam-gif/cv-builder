@@ -19,7 +19,8 @@ export default function ExportButtons({
   const [loadingJPG, setLoadingJPG] = useState(false);
 
   const handlePDF = async () => {
-    if (!targetRef.current || loadingPDF) return;
+    if (!targetRef.current) { alert("Preview not ready yet. Please fill in your name first."); return; }
+    if (loadingPDF) return;
     setLoadingPDF(true);
     try {
       await downloadPDF(targetRef.current, filename);
@@ -31,7 +32,8 @@ export default function ExportButtons({
   };
 
   const handleJPG = async () => {
-    if (!targetRef.current || loadingJPG) return;
+    if (!targetRef.current) { alert("Preview not ready yet. Please fill in your name first."); return; }
+    if (loadingJPG) return;
     setLoadingJPG(true);
     try {
       await downloadJPG(targetRef.current, filename);

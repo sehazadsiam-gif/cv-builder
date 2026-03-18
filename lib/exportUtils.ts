@@ -10,8 +10,14 @@ export async function downloadPDF(
   const canvas = await html2canvas(element, {
     scale: 2,
     useCORS: true,
+    allowTaint: true,
     backgroundColor: "#ffffff",
     logging: false,
+    onclone: (clonedDoc: Document) => {
+      const style = clonedDoc.createElement("style");
+      style.innerHTML = `* { font-family: 'Times New Roman', Times, serif !important; }`;
+      clonedDoc.head.appendChild(style);
+    },
   });
 
   const imgData = canvas.toDataURL("image/png");
@@ -67,11 +73,17 @@ export async function downloadJPG(
   const html2canvas = (await import("html2canvas")).default;
 
   const canvas = await html2canvas(element, {
-    scale: 2,
-    useCORS: true,
-    backgroundColor: "#ffffff",
-    logging: false,
-  });
+  scale: 2,
+  useCORS: true,
+  allowTaint: true,
+  backgroundColor: "#ffffff",
+  logging: false,
+  onclone: (clonedDoc) => {
+    const style = clonedDoc.createElement("style");
+    style.innerHTML = `* { font-family: 'Times New Roman', Times, serif !important; }`;
+    clonedDoc.head.appendChild(style);
+  },
+});
 
   const link = document.createElement("a");
   link.download = `${filename}.jpg`;
