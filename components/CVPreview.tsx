@@ -95,7 +95,7 @@ const CVPreview = forwardRef<HTMLDivElement, CVPreviewProps>(({ type, data }, re
       {/* EDUCATION — shown early for academic, entry_level, internship, graduate */}
       {["academic", "entry_level", "internship", "graduate"].includes(type) &&
         data.education.some(e => e.institution) && (
-          <EducationSection data={data} color={config.color} type={type} />
+          <EducationSection data={data} color={config.color} />
         )}
 
       {/* EXPERIENCE */}
@@ -106,7 +106,7 @@ const CVPreview = forwardRef<HTMLDivElement, CVPreviewProps>(({ type, data }, re
       {/* EDUCATION (for types that show it after experience) */}
       {!["academic", "entry_level", "internship", "graduate"].includes(type) &&
         data.education.some(e => e.institution) && (
-          <EducationSection data={data} color={config.color} type={type} />
+          <EducationSection data={data} color={config.color} />
         )}
 
       {/* SKILLS (for types that show skills after experience) */}
