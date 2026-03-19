@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Shield, Zap, Globe, ChevronRight, Lock, CheckCircle } from "lucide-react";
+import { Shield, Zap, Globe, ChevronRight, Lock, CheckCircle, MessageSquare } from "lucide-react";
 import { CV_TYPES, CV_CATEGORIES, CVType } from "@/lib/cvTypes";
+import FeedbackModal from "@/components/FeedbackModal";
 
 const ATS_BADGE: Record<"High" | "Medium" | "Low", { label: string; color: string; bg: string }> = {
   High: { label: "ATS: High", color: "#166534", bg: "#dcfce7" },
@@ -13,6 +14,7 @@ const ATS_BADGE: Record<"High" | "Medium" | "Low", { label: string; color: strin
 
 export default function HomePage() {
   const [selected, setSelected] = useState<CVType | null>(null);
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const router = useRouter();
 
   const handleStart = () => {
@@ -220,9 +222,20 @@ export default function HomePage() {
           ))}
         </div>
 
-        <p className="text-center text-xs text-gray-300 mt-10">
-          CVCraft — Free forever · No tracking · No database · Open source
-        </p>
+        <div className="flex flex-col items-center gap-4 mt-16">
+          <button 
+            onClick={() => setIsFeedbackOpen(true)}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-gray-200 text-xs font-semibold text-gray-500 hover:text-gray-900 hover:border-gray-300 transition-all shadow-sm"
+          >
+            <MessageSquare size={14} />
+            Give Feedback
+          </button>
+          <p className="text-center text-xs text-gray-300">
+            CVCraft — Free forever · No tracking · No database · Open source
+          </p>
+        </div>
+
+        <FeedbackModal isOpen={isFeedbackOpen} onClose={() => setIsFeedbackOpen(false)} />
       </div>
     </main>
   );

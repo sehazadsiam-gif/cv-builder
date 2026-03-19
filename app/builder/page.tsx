@@ -7,7 +7,8 @@ import CVForm from "@/components/CVForm";
 import CVPreview from "@/components/CVPreview";
 import CVTips from "@/components/CVTips";
 import ExportButtons from "@/components/ExportButtons";
-import { ArrowLeft, Eye, EyeOff } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff, MessageSquare } from "lucide-react";
+import FeedbackModal from "@/components/FeedbackModal";
 
 function BuilderContent() {
   const searchParams = useSearchParams();
@@ -15,6 +16,7 @@ function BuilderContent() {
   const type = (searchParams.get("type") || "mnc") as CVType;
   const [cvData, setCvData] = useState<CVData>(defaultCVData);
   const [showPreview, setShowPreview] = useState(false); // mobile toggle
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const previewRef = useRef<HTMLDivElement | null>(null);
 
   const typeConfig = CV_TYPES[type] || CV_TYPES.chronological;
@@ -69,9 +71,19 @@ function BuilderContent() {
             {showPreview ? "Edit" : "Preview"}
           </button>
 
+          <button
+            onClick={() => setIsFeedbackOpen(true)}
+            className="hidden sm:flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg border border-gray-200 text-gray-500 hover:text-gray-800 transition-colors mr-2"
+          >
+            <MessageSquare size={13} />
+            Feedback
+          </button>
+
           <ExportButtons targetRef={previewRef} filename={filename} compact />
         </div>
       </header>
+
+      <FeedbackModal isOpen={isFeedbackOpen} onClose={() => setIsFeedbackOpen(false)} />
 
       {/* Main area */}
       <div className="flex-1 flex overflow-hidden">
