@@ -6,9 +6,9 @@ import { Shield, Zap, Globe, ChevronRight, Lock, CheckCircle } from "lucide-reac
 import { CV_TYPES, CV_CATEGORIES, CVType } from "@/lib/cvTypes";
 
 const ATS_BADGE: Record<"High" | "Medium" | "Low", { label: string; color: string; bg: string }> = {
-  High:   { label: "ATS: High",   color: "#166534", bg: "#dcfce7" },
+  High: { label: "ATS: High", color: "#166534", bg: "#dcfce7" },
   Medium: { label: "ATS: Medium", color: "#92400e", bg: "#fef3c7" },
-  Low:    { label: "ATS: Low",    color: "#991b1b", bg: "#fee2e2" },
+  Low: { label: "ATS: Low", color: "#991b1b", bg: "#fee2e2" },
 };
 
 export default function HomePage() {
@@ -193,7 +193,7 @@ export default function HomePage() {
             onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; }}
           >
             {selected ? (
-              <>Build my {CV_TYPES[selected].label} CV <ChevronRight size={18} /></>
+              <>Build my {CV_TYPES[selected].label} <ChevronRight size={18} /></>
             ) : (
               "Select a CV type to continue"
             )}
@@ -206,8 +206,8 @@ export default function HomePage() {
         {/* ── FEATURES ROW ── */}
         <div className="animate-fade-up stagger-4 grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-gray-100 pt-8">
           {[
-            { icon: <Shield size={15} />, title: "ATS Optimised", desc: "Passes Applicant Tracking Systems used by 99% of MNCs and global employers" },
-            { icon: <Zap size={15} />, title: "Live Preview", desc: "See your CV update in real-time with Times New Roman 12pt formatting as you type" },
+            { icon: <Shield size={15} />, 
+            { icon: <Zap size={15} />, title: "Live Preview", desc: "See your CV update in real-time" },
             { icon: <Globe size={15} />, title: "22 International Types", desc: "From Chronological to Europass to Federal — every format you'll ever need" },
           ].map((f, i) => (
             <div key={i} className="flex items-start gap-3">
