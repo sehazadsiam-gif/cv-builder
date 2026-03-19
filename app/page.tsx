@@ -61,7 +61,7 @@ export default function HomePage() {
             </span>
           </h1>
           <p className="text-lg text-gray-500 max-w-xl mx-auto">
-            22 international CV types. ATS-optimised. Times New Roman 12pt.
+            22 international CV types. ATS-optimised.
             Live preview. Download as PDF or JPG — instantly, free.
           </p>
         </div>
