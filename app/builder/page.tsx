@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { CVType, defaultCVData, CVData, CV_TYPES } from "@/lib/cvTypes";
 import CVForm from "@/components/CVForm";
 import CVPreview from "@/components/CVPreview";
+import CVTips from "@/components/CVTips";
 import ExportButtons from "@/components/ExportButtons";
 import { ArrowLeft, Eye, EyeOff } from "lucide-react";
 
@@ -86,6 +87,7 @@ function BuilderContent() {
             onChange={handleDataChange}
             accentColor={typeConfig.accent}
           />
+          <CVTips />
         </div>
 
         {/* Preview panel */}
