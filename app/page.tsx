@@ -49,7 +49,7 @@ export default function HomePage() {
           </div>
 
           <h1 className="text-5xl md:text-6xl font-bold mb-4 leading-tight"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+            style={{ fontFamily: "'Hammersmith One', sans-serif" }}>
             Build Your CV,
             <br />
             <span className="italic" style={{
@@ -93,7 +93,7 @@ export default function HomePage() {
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-3 h-3 rounded-full" style={{ background: cat.color }} />
                   <h2 className="text-sm font-bold text-gray-700"
-                    style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                    style={{ fontFamily: "'Hammersmith One', sans-serif" }}>
                     {cat.label}
                   </h2>
                   <div className="flex-1 h-px bg-gray-200" />
@@ -130,7 +130,7 @@ export default function HomePage() {
 
                         <div className="text-xl mb-1.5">{type.icon}</div>
                         <p className="text-xs font-bold text-gray-800 leading-tight mb-1"
-                          style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                          style={{ fontFamily: "'Hammersmith One', sans-serif" }}>
                           {type.label}
                         </p>
                         <p className="text-[10px] text-gray-400 leading-tight mb-2 line-clamp-2">
@@ -161,7 +161,7 @@ export default function HomePage() {
               <span className="text-2xl">{CV_TYPES[selected].icon}</span>
               <div className="flex-1">
                 <h3 className="font-bold text-gray-900"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                  style={{ fontFamily: "'Hammersmith One', sans-serif" }}>
                   {CV_TYPES[selected].label} CV
                 </h3>
                 <p className="text-xs text-gray-500 mt-1 mb-3">{CV_TYPES[selected].description}</p>
@@ -206,7 +206,7 @@ export default function HomePage() {
         {/* ── FEATURES ROW ── */}
         <div className="animate-fade-up stagger-4 grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-gray-100 pt-8">
           {[
-            { icon: <Shield size={15} />, 
+            { icon: <Shield size={15} />, title: "ATS Optimised", desc: "Passes Applicant Tracking Systems used by 99% of MNCs and global employers" },
             { icon: <Zap size={15} />, title: "Live Preview", desc: "See your CV update in real-time" },
             { icon: <Globe size={15} />, title: "22 International Types", desc: "From Chronological to Europass to Federal — every format you'll ever need" },
           ].map((f, i) => (
