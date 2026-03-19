@@ -48,7 +48,7 @@ export default function HomePage() {
             Free · No account · No data stored · 22 CV types
           </div>
 
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 leading-tight"
+          <h1 className="text-5xl md:text-6xl font-normal mb-4 leading-tight"
             style={{ fontFamily: "'Hammersmith One', sans-serif" }}>
             Build Your CV,
             <br />
@@ -92,7 +92,7 @@ export default function HomePage() {
                 {/* Category header */}
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-3 h-3 rounded-full" style={{ background: cat.color }} />
-                  <h2 className="text-sm font-bold text-gray-700"
+                  <h2 className="text-sm font-normal text-gray-700"
                     style={{ fontFamily: "'Hammersmith One', sans-serif" }}>
                     {cat.label}
                   </h2>
@@ -129,7 +129,7 @@ export default function HomePage() {
                         )}
 
                         <div className="text-xl mb-1.5">{type.icon}</div>
-                        <p className="text-xs font-bold text-gray-800 leading-tight mb-1"
+                        <p className="text-xs text-gray-800 leading-tight mb-1"
                           style={{ fontFamily: "'Hammersmith One', sans-serif" }}>
                           {type.label}
                         </p>
@@ -160,7 +160,7 @@ export default function HomePage() {
             <div className="flex items-start gap-3">
               <span className="text-2xl">{CV_TYPES[selected].icon}</span>
               <div className="flex-1">
-                <h3 className="font-bold text-gray-900"
+                <h3 className="font-normal text-gray-900"
                   style={{ fontFamily: "'Hammersmith One', sans-serif" }}>
                   {CV_TYPES[selected].label} CV
                 </h3>
